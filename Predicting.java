@@ -1,8 +1,5 @@
-package www;
-
 import java.util.Scanner;
 import java.util.Random;
-import java.util.*;
 
 public class Predicting {
 	public static void main(String[] args) {
@@ -83,11 +80,11 @@ double pA;
 pH = .525;
 pA = .475;
 
-if(home.getWins() > away.getWins()) {
+if(home.getWins() > (away.getWins() + 3)) {
 	pH = pH + .05;
 	pA = pA - .05;
 }
-else if (home.getWins() < away.getWins()) {
+else if ((home.getWins() + 3) < away.getWins()) {
 	pH = pH - .05;
 	pA = pA + .05;
 }
@@ -110,56 +107,57 @@ else if(away.getWins() < 6 && home.getWins() > 8) {
 	pA = pA - .015;
 }
 
-if(home.getInjuries() > away.getInjuries()) {
+if(home.getInjuries() > (away.getInjuries() + 3)) {
 	pH = pH - .05;
 	pA = pA + .05;
 }
-else if(home.getInjuries() < away.getInjuries()) {
+else if((home.getInjuries() + 3) < away.getInjuries()) {
 	pH = pH + .05;
 	pA = pA - .05;
 }
 
-if(home.getAge() < away.getAge()) {
+if((home.getAge() + 3) < away.getAge()) {
 	pH = pH + .025;
 	pA = pA - .025;
 }
-else if(home.getAge() > away.getAge()) {
+else if(home.getAge() > (away.getAge() + 3)) {
 	pH = pH - .025;
 	pA = pA + .025;
 }
 
-if(home.getfieldGoals() > away.getfieldGoals()) {
-	pH = pH + .025;
-	pA = pA - .025;
+if(home.getfieldGoals() > (away.getfieldGoals() + 10)) {
+	//previously .025 in case in needs to be changed again
+	pH = pH + .015;
+	pA = pA - .015;
 }
-else if(home.getfieldGoals() < away.getfieldGoals()) {
-	pH = pH - .025;
-	pA = pA + .025;
+else if((home.getfieldGoals() + 10) < away.getfieldGoals()) {
+	pH = pH - .015;
+	pA = pA + .015;
 }
 
-if(home.getProBowl() > away.getProBowl()) {
+if(home.getProBowl() > (away.getProBowl() + 3)) {
 	pH = pH + .05;
 	pA = pA - .05;
 }
-else if(home.getProBowl() < away.getProBowl()) {
+else if((home.getProBowl() + 3) < away.getProBowl()) {
 	pH = pH - .05;
 	pA = pA + .05;
 }
 
-if(home.getTurn() > away.getTurn()) {
+if(home.getTurn() > (away.getTurn() + 3)) {
 	pH = pH + .1;
 	pA = pA - .1;
 }
-else if(home.getTurn() < away.getTurn()) {
+else if((home.getTurn() + 3) < away.getTurn()) {
 	pH = pH - .1;
 	pA = pA + .1;
 }
 
-if(home.getPoint() > away.getPoint()) {
+if(home.getPoint() > (away.getPoint() + 10)) {
 	pH = pH + .1;
 	pA = pA - .1;
 }
-else if(home.getPoint() < away.getPoint()) {
+else if((home.getPoint() + 10) < away.getPoint()) {
 	pH = pH - .1;
 	pA = pA + .1;
 }
@@ -192,20 +190,22 @@ else if(pH < .5 && team3.equals(home.getName())){
 	if(again.equalsIgnoreCase("yes")){
 		System.out.println("How much would you like to bet");
 		int bet = sc.nextInt();
-		System.out.println("You would like to bet $" + bet + " on the " + away.getName() + " to beat the " + home.getName());
+		System.out.println("You would like to bet $" + bet + " on the " + home.getName() + " to beat the " + away.getName());
 		System.out.println("Correct?" + "     [yes / no]");
 		String correct = keyScan.next();
-		if(again.equalsIgnoreCase("yes")){
+		if(correct.equalsIgnoreCase("yes")){
 			System.out.println("Ok! You're bet has been processed!");
 			resume = false;
 			repeat = false;
 			}
-		else if(again.equalsIgnoreCase("no")){
+		else if(correct.equalsIgnoreCase("no")){
 		System.out.println("Ok, let's try again.");
-		break;
+		repeat = true;
+		resume = true;
 		}
 	}
 	else if(again.equalsIgnoreCase("no")){
+		System.out.println("Ok, let's try again.");	
 	repeat = false;
 	}
 }
@@ -233,17 +233,20 @@ else if(pA < .5 && team3.equals(away.getName())){
 		System.out.println("You would like to bet $" + bet + " on the " + away.getName() + " to beat the " + home.getName());
 		System.out.println("Correct?" + "     [yes / no]");
 		String correct = keyScan.next();
-		if(again.equalsIgnoreCase("yes")){
+		if(correct.equalsIgnoreCase("yes")){
 			System.out.println("Ok! You're bet has been processed!");
 			resume = false;
 			repeat = false;
 			}
-		else if(again.equalsIgnoreCase("no")){
+		else if(correct.equalsIgnoreCase("no")){
 		System.out.println("Ok, let's try again.");
-		break;
+		repeat = true;
+		resume = true;
+
 		}
 	}
 	else if(again.equalsIgnoreCase("no")){
+		System.out.println("Ok, let's try again.");	
 	repeat = false;
 	}
 }
