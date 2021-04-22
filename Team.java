@@ -1,4 +1,3 @@
-package www;
 
 public class Team {
         private int order;
@@ -69,8 +68,8 @@ public class Team {
         
         public String toString() {
             String s;
-            s = "The " + order + " team " + name + " have won " + wins + " games, have an average age of " + averageAge + "\n" + "have " + proBowlers + " Pro Bowlers" + 
-            ", have a turnover differential of " + turnoverDifferential + ", have made " + fieldGoals + " fieldgoals" + "\n" + "have a point differential of "
+            s = "The " + order + " team " + name + " have won " + wins + " games, have an average age of " + averageAge + " have " + proBowlers + " Pro Bowlers" + 
+            ", have a turnover differential of " + turnoverDifferential + "\n" + "have made " + fieldGoals + " fieldgoals" + " have a point differential of "
             + pointDifferential + " and have " + injuries + " total injuries";
             return s;
         }
